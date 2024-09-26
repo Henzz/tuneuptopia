@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
   return res.status(234).send('Welcome Welcome!!');
 });
 
-app.use('/v1/api/users', User);
+app.use('/api/v1/users', User);
 
 // Server
 app.listen(PORT, () => {
