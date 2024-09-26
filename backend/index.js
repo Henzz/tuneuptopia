@@ -38,8 +38,8 @@ app.listen(PORT, () => {
 mongoose
   .connect(mongoDBURL)
   .then((res) => {
-    console.log(`Sucess: App connected to database `);
+    console.log(`Success: App connected to database `);
   })
   .catch((err) => {
-    console.log(`Error: `, err);
+    console.log(`Error: App not connected to database`);
   });
