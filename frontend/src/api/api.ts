@@ -2,7 +2,8 @@ import axios from 'axios';
 import environment from '../environment/enviroment';
 
 const token = localStorage.getItem('token');
-const BASEURL = environment.DEV_URL;
+// const BASEURL = environment.DEV_URL;
+const BASEURL = environment.PRO_URL;
 
 const http = axios.create({
   baseURL: `${BASEURL}`,
