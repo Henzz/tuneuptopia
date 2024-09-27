@@ -24,6 +24,17 @@ const userSchema = new mongoose.Schema(
         message: (props) => `${props.value} is not a valid email!`,
       },
     },
+    phoneNumber: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+        validator: function (v) {
+          return /^251\d{9}$/.test(v); // Validates the format: 251 followed by 9 digits
+        },
+        message: (props) => `${props.value} is not a valid phone number!`,
+      },
+    },
     password: {
       type: String,
       required: true,

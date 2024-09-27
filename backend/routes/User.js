@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
     const newUser = {
       username: req.body.username,
       email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
       password: req.body.password,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -111,18 +112,7 @@ router.get('/:id', async (req, res) => {
 router.put(
   '/:id',
   [
-    body('username')
-      .optional()
-      .isLength({ min: 3, max: 30 })
-      .trim()
-      .custom(async (value) => {
-        // Check if username already exists
-        const existingUser = await User.findOne({ username: value });
-        if (existingUser) {
-          throw new Error('Username already in use');
-        }
-        return true; // Proceed if the username is unique
-      }),
+    body('username').optional().isLength({ min: 3, max: 30 }).trim(),
     body('email').optional().isEmail().normalizeEmail(),
     body('password').optional().isLength({ min: 6 }),
     body('firstName').optional().isLength({ max: 50 }).trim(),
@@ -155,6 +145,16 @@ router.put(
         return res.status(404).json({
           success: false,
           msg: 'User not found',
+        });
+      }
+
+      // Check if username already exists
+      const existingUser = await User.findOne({ username: updateData.username });
+      if (existingUser && existingUser._id != id) {
+        return res.status(400).json({
+          success: false,
+          msg: 'Username already in use',
+          data: existingUser
         });
       }
 
