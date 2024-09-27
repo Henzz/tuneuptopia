@@ -1,13 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
-import Users from './pages/admin/User/Users';
+import Routing from './routes/Routing';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Users />} />
-      {/* <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotFound />} /> */}
-    </Routes>
+    <>
+      <Routing />
+    </>
   );
 };
 
