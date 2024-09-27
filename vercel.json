@@ -1,0 +1,30 @@
+{
+  "routes": [
+    {
+      "src": "/admin/dashboard",
+      "dest": "/frontend/"
+    },
+    {
+      "src": "/admin/users",
+      "dest": "/frontend/"
+    },
+    {
+      "src": "/admin/news",
+      "dest": "/frontend/"
+    },
+    {
+      "src": "/admin/categories",
+      "dest": "/frontend/"
+    },
+    {
+      "src": "/admin/audios",
+      "dest": "/frontend/"
+    },
+    {
+      "src": "/admin/faqs",
+      "dest": "/frontend/"
+    },
+    { "src": "/frontend/", "dest": "/frontend/" }
+  ],
+  "rewrites": [{ "source": "/frontend/(.*)", "destination": "/frontend" }]
+}
