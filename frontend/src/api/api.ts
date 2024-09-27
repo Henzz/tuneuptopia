@@ -14,7 +14,7 @@ const http = axios.create({
 const filteredForm = (data: any) => {
   console.log('filtering form: ', data);
   // Create a new object to store the filtered key-value pairs
-  const filteredFormData = {};
+  const filteredFormData: { [key: string]: any } = {};
 
   // Iterate over the FormData object and only add non-empty values
   for (const [key, value] of Object.entries(data)) {
