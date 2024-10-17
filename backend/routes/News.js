@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     if ((!title, !content, !author, !publishedDate, !isPublished)) {
       return res.status(400).send({
         success: false,
-        msg: 'Send all required fields: title, content, author, publishedDate, isPublished',
+        message: 'Send all required fields: title, content, author, publishedDate, isPublished',
       });
     }
 
@@ -29,13 +29,13 @@ router.post('/', async (req, res) => {
     return res.status(201).send({
       success: true,
       data: addedData,
-      msg: 'Successfully created',
+      message: 'Successfully created',
     });
   } catch (err) {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
       success: false,
-      msg: 'Invalid format',
+      message: 'Invalid format',
     });
   }
 
@@ -76,7 +76,7 @@ router.get('/:id', async (req, res) => {
     if (!article) {
       return res.status(404).json({
         success: false,
-        msg: 'Article not found',
+        message: 'Article not found',
       });
     }
 
@@ -88,7 +88,7 @@ router.get('/:id', async (req, res) => {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -110,7 +110,7 @@ router.put('/:id', async (req, res) => {
     if (!article) {
       return res.status(404).json({
         success: false,
-        msg: 'Article not found',
+        message: 'Article not found',
       });
     }
 
@@ -131,13 +131,13 @@ router.put('/:id', async (req, res) => {
     return res.status(200).json({
       success: true,
       data: updatedData,
-      msg: 'Successfully updated',
+      message: 'Successfully updated',
     });
   } catch (err) {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -150,7 +150,7 @@ router.delete('/:id', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
       success: false,
-      msg: 'Invalid format',
+      message: 'Invalid format',
     });
   }
 
@@ -159,14 +159,14 @@ router.delete('/:id', async (req, res) => {
     if (!article) {
       return res.status(404).json({
         success: false,
-        msg: 'Article not found',
+        message: 'Article not found',
       });
     }
 
     // Return the success response
     return res.status(200).json({
       success: true,
-      msg: 'Successfully deleted',
+      message: 'Successfully deleted',
     });
     // res.status(204).send(); // No content
   } catch (error) {

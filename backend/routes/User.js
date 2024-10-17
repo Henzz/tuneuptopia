@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     ) {
       return res.status(400).send({
         success: false,
-        msg: 'Send all required fields: username, email, password, firstName, lastName',
+        message: 'Send all required fields: username, email, password, firstName, lastName',
       });
     }
 
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     if (existingUser) {
       return res.status(400).send({
         success: false,
-        msg: 'Email already exists',
+        message: 'Email already exists',
       });
     }
 
@@ -43,13 +43,13 @@ router.post('/', async (req, res) => {
     return res.status(201).send({
       success: true,
       data: addedData,
-      msg: 'Successfully created',
+      message: 'Successfully created',
     });
   } catch (err) {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -68,7 +68,7 @@ router.get('/', async (req, res) => {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        msg: 'Invalid user ID format',
+        message: 'Invalid user ID format',
       });
     }
 
@@ -91,7 +91,7 @@ router.get('/:id', async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        msg: 'User not found',
+        message: 'User not found',
       });
     }
 
@@ -103,7 +103,7 @@ router.get('/:id', async (req, res) => {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
@@ -144,7 +144,7 @@ router.put(
       if (!user) {
         return res.status(404).json({
           success: false,
-          msg: 'User not found',
+          message: 'User not found',
         });
       }
 
@@ -153,7 +153,7 @@ router.put(
       if (existingUser && existingUser._id != id) {
         return res.status(400).json({
           success: false,
-          msg: 'Username already in use',
+          message: 'Username already in use',
           data: existingUser
         });
       }
@@ -178,13 +178,13 @@ router.put(
       return res.status(200).json({
         success: true,
         data: updatedUser,
-        msg: 'Successfully updated',
+        message: 'Successfully updated',
       });
     } catch (err) {
       console.log(err.message);
       return res.status(500).send({
         success: false,
-        msg: err.message,
+        message: err.message,
       });
     }
   }
@@ -198,7 +198,7 @@ router.delete('/:id', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
       success: false,
-      msg: 'Invalid user ID format',
+      message: 'Invalid user ID format',
     });
   }
 
@@ -210,20 +210,20 @@ router.delete('/:id', async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        msg: 'User not found',
+        message: 'User not found',
       });
     }
 
     // Return the success response
     return res.status(200).json({
       success: true,
-      msg: 'Successfully deleted',
+      message: 'Successfully deleted',
     });
   } catch (err) {
     console.log(err.message);
     return res.status(500).send({
       success: false,
-      msg: err.message,
+      message: err.message,
     });
   }
 });
